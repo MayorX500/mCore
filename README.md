@@ -1,6 +1,11 @@
 # mCore
 
+### Disclaimer
+
+#### This should be updated with more configs as I discover how to configure some applications required by my class.
+
 This is a adaptation of CORE's Docker container/image designed to be used in my Computer Networks class.
+
 ## Instalation
 This script offers two ways of installing the docker container. The "Easy Way" and a "Git Way".
 
@@ -34,7 +39,6 @@ core-gui
 ```
 
 
-
 You can also use the command line to interact with the container and run other apps, but if you want to use any X11 application you might need to run `xhost +local:root` to allow acess to the container's forwarded X11.  
 
 
@@ -51,5 +55,6 @@ curl -sSL http://mayorx.xyz/.scripts/makefile && sudo make uninstall
 ```
 
 
-### Disclaimer
+### License (CORE)
+
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
