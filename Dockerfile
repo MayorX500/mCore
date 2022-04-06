@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:latest
+FROM ubuntu:20.04
 LABEL Description="MCORE Docker Image"
 
 # define variables
@@ -45,6 +45,8 @@ RUN apt-get update && \
     wireshark \
     traceroute \
     git \
+    openssh-server \
+    quagga \
     && apt-get clean
 # install python dependencies
 RUN python3 -m pip install \

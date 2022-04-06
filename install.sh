@@ -14,6 +14,18 @@ function start_container {
 
 }
 
+function write_uninstall {
+
+	echo -ne "#!/bin/bash
+
+docker rm -f core && \
+	docker rmi mcore && \
+	sudo rm -f /usr/local/bin/core-gui /usr/local/bin/core-uninstall
+
+" > ./core-uninstall.sh
+
+}
+
 
 function write_executable {
 	
@@ -30,11 +42,16 @@ docker exec -it $container_name core-gui-legacy
 
 }
 
+function write_sh {
+	write_executable
+	write_uninstall
+}
+
 function main {
 
 	create_image
 	start_container
-	write_executable
+	write_sh
 
 }
 
