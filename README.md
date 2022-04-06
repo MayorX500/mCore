@@ -1,6 +1,6 @@
 # mCore
 
-This is a adaptation of CORE's Docker container/image designed to be used in 
+This is a adaptation of CORE's Docker container/image designed to be used in my Computer Networks class.
 ## Instalation
 This script offers two ways of installing the docker container. The "Easy Way" and a "Git Way".
 
