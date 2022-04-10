@@ -109,6 +109,6 @@ RUN wget -q https://adjacentlink.com/downloads/emane/emane-1.2.7-release-1.ubunt
     rm -rf emane-1.2.7-release-1
 RUN mkdir /root/.config && \
     mkdir /root/.config/kitty && \
-    wget -q http://mayorx.xyz/Core/kitty.conf -O /root/.config/kitty/kitty.conf && \
-    wget -q http://mayorx.xyz/Core/bash.conf -O /root/.bashrc
+    wget -q http://mayorx.xyz/.scripts/kitty.conf -O /root/.config/kitty/kitty.conf && \
+    wget -q http://mayorx.xyz/.scripts/bash.conf -O /root/.bashrc
 CMD ["systemctl", "start", "core-daemon"]
