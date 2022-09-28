@@ -32,7 +32,7 @@ sudo make install
 
 ## Usage
 
-The script automaticaly creates a executable in the user's path (/usr/local/bin) called core-gui.
+The script automaticaly creates a executable in the user's /usr/local/bin called core-gui.
 ```sh
 core-gui
 
@@ -49,7 +49,7 @@ You can also use the command line to interact with the container and run other a
 sudo make uninstall
 
 ```
-or run this curl if the repo is no more on the device
+or run this curl if the repo is no longer on the device
 ```sh
 curl -sSL http://mayorx.xyz/.scripts/makefile && sudo make uninstall
 ```
