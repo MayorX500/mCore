@@ -45,10 +45,18 @@ You can also use the command line to interact with the container and run other a
 ## Uninstallation
 
 ```sh
+# Open a terminal and run
+core-uninstall
+
+```
+
+or if the repo is still on the device
+```sh
 # Go to the git repo and run
 sudo make uninstall
 
 ```
+
 or run this curl if the repo is no longer on the device
 ```sh
 curl -sSL http://mayorx.xyz/.scripts/makefile && sudo make uninstall
