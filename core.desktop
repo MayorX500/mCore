@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=CORE
+StartupWMClass=core_emu
+Comment=A network emulator.
+GenericName=Common Open Research Emulator
+Exec=/usr/bin/core-gui
+Icon=core
+Type=Application
+Categories=Network;
+Terminal=true
+StartupNotify=false
