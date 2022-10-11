@@ -12,7 +12,7 @@ This script offers two ways of installing the docker container. The "Easy Way" a
 ### Easy Instalation
 This instalation method creates a directory under $HOME called `.mCore` where the git repository will be stored. You can delete this directory after the install.
 ```sh
-sh -c "$(curl -sSL http://mayorx.xyz/.scripts/install_mcore.sh)"
+curl -sSL http://mayorx.xyz/.scripts/install_mcore.sh | sh"
 ```
 
 ### Github instalation
@@ -23,18 +23,20 @@ This instalation method allows the user to chose a more custom install especialy
 git clone https://github.com/MayorX500/mCore.git
 
 # Cd into the directory
-cd ./mCore/
+cd mCore/
 
 # Install the docker container
-sudo make install
+sudo --preserve-env=HOME make install
 
 ```
 
 ## Usage
 
-The script automaticaly creates a executable in the user's /usr/local/bin called core-gui.
+The script automaticaly creates the required executables.
+in the user's /usr/local/bin called core-gui and a Desktop entry in $HOME/.local/share/applications called core.desktop.
 ```sh
-core-gui
+core-gui	# Run the CORE from the shell
+core-bash 	# Run the DOCKER shell from the HOST
 
 ```
 
@@ -59,7 +61,8 @@ sudo make uninstall
 
 or run this curl if the repo is no longer on the device
 ```sh
-curl -sSL http://mayorx.xyz/.scripts/makefile && sudo make uninstall
+wget https://raw.githubusercontent.com/MayorX500/mCore/master/makefile && sudo make uninstall
+
 ```
 
 

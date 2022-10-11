@@ -1,6 +1,6 @@
 #!/bin/bash
 
-image_name=mcore:latest
+image_name=mcore
 container_name=core
 
 create_image () {
@@ -10,7 +10,7 @@ create_image () {
 }
 
 start_container () {
-	docker run -itd --restart unless-stopped --name $container_name -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw --privileged $image_name /usr/local/bin/core-daemon
+	docker run -itd --restart unless-stopped --name $container_name -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v $HOME/Documents/Core:/root:rw --privileged $image_name /usr/local/bin/core-daemon
 
 }
 
@@ -29,11 +29,6 @@ docker rm -f core && \
 write_executable () {
 	
 	echo -ne "#!/bin/bash
-if \$(docker ps | grep $container_name)
-then
-	docker start $container_name
-fi
-
 xhost +local:root &&\\
 docker exec -it $container_name core-gui-legacy
 
@@ -41,13 +36,25 @@ docker exec -it $container_name core-gui-legacy
 
 }
 
+write_executable_shell () {
+	
+	echo -ne "#!/bin/bash
+xhost +local:root &&\\
+docker exec -it $container_name bash
+
+" > ./core_bash.sh
+
+}
+
 write_sh () {
 	write_executable
+	write_executable_shell
 	write_uninstall
 }
 
 main () {
 
+	mkdir -p $HOME/Documents/Core
 	create_image
 	start_container
 	write_sh

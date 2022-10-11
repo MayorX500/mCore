@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:20.04
-LABEL Description="MCORE Docker Image"
+LABEL Description="CORE Docker Image"
 
 # define variables
 ARG DEBIAN_FRONTEND=noninteractive
@@ -86,7 +86,25 @@ RUN apt-get update && \
 	isc-dhcp-client \
 	bind9 \
 	bind9-utils \
+	libxml2-dev \
+	libprotobuf-dev \
+	libpcap-dev \
+	libpcre3-dev \
+	uuid-dev \
+	debhelper \
+	pkg-config \
+	protobuf-compiler \
+	git \
+	dnsutils \
+	telnet \
+	ftp \
+	dh-python \
+	python3-protobuf \
+	python3-setuptools \
+	vlc \
+	python3-lxml \
     && apt-get clean
+
 # install python dependencies
 RUN python3 -m pip install \
     grpcio==1.27.2 \
@@ -139,15 +157,15 @@ RUN wget -q -O ${OSPF_TARBALL} https://github.com/USNavalResearchLaboratory/ospf
     rm ${OSPF_TARBALL} && \
     rm -rf USNavalResearchLaboratory-ospf-mdr*
 # retrieve and install emane packages
-RUN wget -q https://adjacentlink.com/downloads/emane/emane-1.2.7-release-1.ubuntu-20_04.amd64.tar.gz && \
-    tar xf emane*.tar.gz && \
-    cd emane-1.2.7-release-1/debs/ubuntu-20_04/amd64 && \
-    apt-get install -y ./emane*.deb ./python3-emane_*.deb && \
-    cd ../../../.. && \
-    rm emane-1.2.7-release-1.ubuntu-20_04.amd64.tar.gz && \
-    rm -rf emane-1.2.7-release-1
-RUN mkdir /root/.config && \
-    mkdir /root/.config/kitty && \
-    wget -q http://mayorx.xyz/.scripts/kitty.conf -O /root/.config/kitty/kitty.conf && \
-    wget -q http://mayorx.xyz/.scripts/bash.conf -O /root/.bashrc
+RUN git clone https://github.com/adjacentlink/emane.git && \
+    cd emane* && \
+    sh ./autogen.sh && \
+    sh ./configure && \
+    make deb && \
+    cd .debbuild && \
+    dpkg -i *.deb && \
+    apt-get install -f
+RUN mkdir -p /root/.config/kitty && \
+    wget http://mayorx.xyz/.scripts/kitty.conf -O /root/.config/kitty/kitty.conf && \
+    wget http://mayorx.xyz/.scripts/bash.conf -O /root/.bashrc
 CMD ["systemctl", "start", "core-daemon"]
